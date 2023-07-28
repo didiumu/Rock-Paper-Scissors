@@ -29,10 +29,10 @@ function playRound(playSelection, computerSelection){
     return "It's a Tie!"
   }
    else if(result == "Player"){
-     return 'You Winner!'
+     return 'You Winner! ${playerSelection} beats ${computerSelection}'
  }
   else{
-    return 'You Lose!'
+    return 'You Lose! ${computerSelection} beats ${playerSelection}'
   }
 }
 // const playerSelection = "rock";
@@ -51,9 +51,12 @@ function getPlayerChoice(){
     validatedInput = true;
     return choiceInLower;
   }
-
+  
+  
   }
 }
+
+
 function game(){
   let scorePlayer = 0;
   let scoreComputer = 0;
@@ -71,6 +74,7 @@ function game(){
 scoreComputer++;
 }
 }
- console.log("Game Over")
+console.log("Game Over")
 
+//  
 game()
