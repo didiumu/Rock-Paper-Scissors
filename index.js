@@ -1,45 +1,76 @@
-console.log("HI")
-function playGame() {
-  const choices = ['rock', 'paper', 'scissors'];
+ console.log("HI");
 
-  const playerChoice = getPlayerChoice();
+const options = ["rock", "paper", "scissors"];
 
-  if (playerChoice) {
+function getComputerChoice(){
+  const choice = options[Math.floor(Math.random() * options.length)];
+  return choice;
+}
 
-    displayResult("Invalid choice. Please choose Rock, Paper, or Scissors.");
-    return;
+function checkWinner(playSelection, computerSelection){
+  if(playSelection == computerSelection){
+    return "Tie";
   }
-  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+  else if (
+    (playSelection == "rock" && computerSelection == "scissors") ||
+   (playSelection == "scissors" && computerSelection == "paper") ||
+   (playSelection == "paper" && computerSelection == "rock")
+  ){
+    return "Player";
 
-  const result = determineWinner(playerChoice, computerChoice);
-
-   displayResult(result);
-}
-
-function getPlayerChoice() {
-  const playerChoice = prompt("Enter your choice: Rock, Paper, or Scissors").toLowerCase();
-  return playerChoice;
-}
-
-function determineWinner(playerChoice, computerChoice) {
-  if (playerChoice === computerChoice) {
-    return "It's a tie!";
-  } else if (
-    (playerChoice === 'rock' && computerChoice === 'scissors') ||
-    (playerChoice === 'paper' && computerChoice === 'rock') ||
-    (playerChoice === 'scissors' && computerChoice === 'paper')
-  ) {
-    return "You win!";
-  } else {
-    return "You lose!";
+  }
+  else{
+    return "computer"
+  }
+  }
+function playRound(playSelection, computerSelection){
+  const result = checkWinner(playSelection, computerSelection);
+  if(result =="Tie"){
+    return "It's a Tie!"
+  }
+   else if(result == "Player"){
+     return 'You Winner!'
+ }
+  else{
+    return 'You Lose!'
   }
 }
+// const playerSelection = "rock";
+// const computerSelection =getComputerChoice();
+// console.log(playRound(playerSelection,computerSelection));
 
-function displayResult(result) {
-  const resultDiv = document.createElement("div");
-  resultDiv.classList.add("result");
-  resultDiv.textContent = result;
-  document.body.appendChild(resultDiv);
+function getPlayerChoice(){
+  let validatedInput = false;
+  while(validatedInput == false){
+    const choice = prompt("Rock Paper Scissors");
+    if(choice == null){
+      continue
+    }
+    const choiceInLower = choice.toLowerCase();
+  if (options.includes(choiceInLower)){
+    validatedInput = true;
+    return choiceInLower;
+  }
+
+  }
 }
+function game(){
+  let scorePlayer = 0;
+  let scoreComputer = 0;
+ console.log("Welcom")
+  for (let i = 0; i < 5; i++){
+ const playerSelection = getPlayerChoice();
+ const computerSelection = getComputerChoice();
+ console.log(playRound(playerSelection, computerSelection));
+ console.log("-----------")
+ 
+ if(checkWinner(playerSelection, computerSelection) == "Player"){
+  scorePlayer++;
+ }
+  else if(checkWinner(playerSelection, computerSelection) == "computer")   
+scoreComputer++;
+}
+}
+ console.log("Game Over")
 
-playGame();
+game()
