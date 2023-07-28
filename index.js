@@ -52,10 +52,8 @@ function getPlayerChoice(){
     return choiceInLower;
   }
   
-  
   }
 }
-
 
 function game(){
   let scorePlayer = 0;
@@ -76,5 +74,5 @@ scoreComputer++;
 }
 console.log("Game Over")
 
-//  
+
 game()
